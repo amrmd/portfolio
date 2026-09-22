@@ -1,8 +1,8 @@
 import { expect, type Page } from '@playwright/test'
 
 export const browserArticleFixture = {
-  description: 'English article with a zoomable image and article map',
-  path: '/en/blog/how-to-protect-your-site-with-upstash',
+  description: 'English article with an article map',
+  path: '/en/blog/image-based-prompt-injection',
 } as const
 
 export async function prepareBrowserPage(page: Page) {

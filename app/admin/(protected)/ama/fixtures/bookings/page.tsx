@@ -235,7 +235,7 @@ async function BookingFixtures({
         total={filtered.length}
         page={page}
         pageSize={pageSize}
-        ownerTimeZone="Asia/Taipei"
+        ownerTimeZone="Asia/Ho_Chi_Minh"
         filters={filters}
         attentionTotal={
           attentionBookings.length + timeRequests.length + failedOperations.length

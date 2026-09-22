@@ -112,13 +112,13 @@ function manageBlocks(
 }
 
 function signOff(): Block {
-  return { type: 'paragraph', text: 'Cali' }
+  return { type: 'paragraph', text: 'Amr' }
 }
 
 function subjectFor(kind: BookingEmailKind, locale: Locale): string {
   const subjects: Record<BookingEmailKind, Record<Locale, string>> = {
     confirmation: {
-      en: 'Your AMA Session with Cali is booked',
+      en: 'Your AMA Session with Amr is booked',
       zh: '你的 AMA Session 已预订',
     },
     rescheduled: {

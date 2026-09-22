@@ -32,7 +32,7 @@ export function newsletterRetiredMetadata(locale: Locale): Metadata {
       description,
       type: 'website',
       locale: locale === 'en' ? 'en_US' : 'zh_CN',
-      siteName: 'Cali Castle',
+      siteName: 'Amr Mohamed',
       url: locale === 'en' ? pair.en : pair.zh,
     },
     twitter: { card: 'summary_large_image', title, description },

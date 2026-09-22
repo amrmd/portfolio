@@ -13,7 +13,7 @@ import { fontVariablesForLocale } from './fonts'
 import { NotFoundPageView } from './_views/not-found-page'
 
 export const metadata: Metadata = {
-  title: '404 | Cali Castle',
+  title: '404 | Amr Mohamed',
   description: nonPublicDescriptions.notFound,
   robots: nonPublicRobots,
 }

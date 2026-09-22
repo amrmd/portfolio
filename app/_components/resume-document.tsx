@@ -19,7 +19,7 @@ export function ResumeDocument({ children, locale }: { children: React.ReactNode
       <body>
         <div className="resume-page">
           <nav aria-label={locale === 'en' ? 'Page navigation' : '页面导航'} className="resume-nav">
-            <a href={localePath(locale, '/')} className="resume-text-control">← cali.so</a>
+            <a href={localePath(locale, '/')} className="resume-text-control">← amr.md</a>
             <a
               href={localePath(locale === 'en' ? 'zh' : 'en', '/resume')}
               hrefLang={locale === 'en' ? 'zh-CN' : 'en'}

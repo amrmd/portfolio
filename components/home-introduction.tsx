@@ -1,18 +1,12 @@
 import { ExternalLink } from '~/components/external-link'
 import { HomeIntroReplay } from '~/components/home-intro-replay'
-import {
-  EmailCard,
-  GitHubCard,
-  type GitHubSnapshot,
-  type SocialSnapshot,
-  XCard,
-  XiaohongshuCard,
-} from '~/components/social-cards'
+import { ExternalLabel } from '~/components/external-mark'
+import { EmailCard } from '~/components/social-cards'
 import { T } from '~/lib/i18n'
 import { faviconUrl, getLinkPreview } from '~/lib/link-previews'
 
-const ZOLPLAY_URL = 'https://zolplay.com'
-const ZOLPLAY_FAVICON_SRC = faviconUrl(ZOLPLAY_URL)!
+const PV_URL = 'https://pv.agency'
+const PV_FAVICON_SRC = faviconUrl(PV_URL)!
 
 function DesignEngineerMark() {
   return (
@@ -139,13 +133,13 @@ function DetailsPhrase({ children }: { children: React.ReactNode }) {
   )
 }
 
-function ZolplayLink({ children }: { children: React.ReactNode }) {
+function PVLink({ children }: { children: React.ReactNode }) {
   return (
     <span className="home-zolplay-link">
       <ExternalLink
-        href={ZOLPLAY_URL}
-        favicon={ZOLPLAY_FAVICON_SRC}
-        preview={getLinkPreview(ZOLPLAY_URL)}
+        href={PV_URL}
+        favicon={PV_FAVICON_SRC}
+        preview={getLinkPreview(PV_URL)}
       >
         {children}
       </ExternalLink>
@@ -153,23 +147,28 @@ function ZolplayLink({ children }: { children: React.ReactNode }) {
   )
 }
 
-function HomeContact({ social, github }: { social: SocialSnapshot; github: GitHubSnapshot }) {
+function XLink() {
+  return (
+    <a href="https://x.com/amrmd" target="_blank" rel="noreferrer" className="home-contact-link">
+      <ExternalLabel>@amrmd</ExternalLabel>
+    </a>
+  )
+}
+
+function HomeContact() {
   return (
     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
       <T
         zh={
           <>
-            可以在 <XCard data={social} trigger="@calicastle" triggerClassName="home-contact-link" />、
-            <GitHubCard data={github} triggerClassName="home-contact-link" /> 和
-            <XiaohongshuCard triggerClassName="home-contact-link" />找到我，也可以发邮件到{' '}
-            <EmailCard address="hi@cali.so" trigger="hi@cali.so" triggerClassName="home-contact-link" />。
+            可以在 <XLink /> 找到我，也可以发邮件到{' '}
+            <EmailCard address="hi@amr.md" trigger="hi@amr.md" triggerClassName="home-contact-link" />。
           </>
         }
         en={
           <>
-            Find me at <XCard data={social} trigger="@calicastle" triggerClassName="home-contact-link" />,{' '}
-            <GitHubCard data={github} triggerClassName="home-contact-link" /> and{' '}
-            <EmailCard address="hi@cali.so" trigger="hi@cali.so" triggerClassName="home-contact-link" />
+            Find me at <XLink /> or{' '}
+            <EmailCard address="hi@amr.md" trigger="hi@amr.md" triggerClassName="home-contact-link" />
           </>
         }
       />
@@ -177,15 +176,15 @@ function HomeContact({ social, github }: { social: SocialSnapshot; github: GitHu
   )
 }
 
-export function HomeIntroduction({ social, github }: { social: SocialSnapshot; github: GitHubSnapshot }) {
+export function HomeIntroduction() {
   return (
     <div className="home-introduction">
       <p className="text-sm leading-relaxed text-muted-foreground">
         <T
           zh={
             <>
-              我是 Cali，两个孩子的爸爸，也是一名
-              <DesignEngineerPhrase>设计工程师</DesignEngineerPhrase>。我也是 Agent 指挥官，热爱把细节做到
+              我是 Amr，一名数字游民，也是一名
+              <DesignEngineerPhrase>AI 策略师</DesignEngineerPhrase>。我也是 Agent 指挥官，热爱把细节做到
               <DetailsPhrase>
                 <span className="home-detail-units">
                   <span className="home-detail-unit">刚</span>
@@ -198,7 +197,7 @@ export function HomeIntroduction({ social, github }: { social: SocialSnapshot; g
           }
           en={
             <>
-              I’m Cali, a father of two and a <DesignEngineerPhrase>design engineer</DesignEngineerPhrase>. I’m also an
+              I’m Amr, a digital nomad and an <DesignEngineerPhrase>AI strategist</DesignEngineerPhrase>. I’m also an
               agent orchestrator, and I love getting the{' '}
               <DetailsPhrase>
                 <span className="home-detail-units home-detail-words">
@@ -218,12 +217,12 @@ export function HomeIntroduction({ social, github }: { social: SocialSnapshot; g
         <T
           zh={
             <>
-              我创办了<ZolplayLink>佐玩</ZolplayLink>，一家打造产品、品牌与数字体验的 AI 原生设计工作室。
+              我创办了<PVLink>PV</PVLink>，一家打造产品、品牌与数字体验的 AI 原生设计工作室。
             </>
           }
           en={
             <>
-              I founded <ZolplayLink>Zolplay</ZolplayLink>, an AI-native design studio creating products, brands, and
+              I founded <PVLink>PV</PVLink>, an AI-native design studio creating products, brands, and
               digital experiences.
             </>
           }
@@ -235,7 +234,7 @@ export function HomeIntroduction({ social, github }: { social: SocialSnapshot; g
           en="Being a generalist is kind of my thing. I bring curiosity, craft, and a little fun to whatever the team is making."
         />
       </p>
-      <HomeContact social={social} github={github} />
+      <HomeContact />
     </div>
   )
 }

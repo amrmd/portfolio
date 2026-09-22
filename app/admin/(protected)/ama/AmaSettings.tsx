@@ -1169,7 +1169,7 @@ function SlotPreview({
 }
 
 export function AmaSettings({
-  timeZone = 'Asia/Taipei',
+  timeZone = 'Asia/Ho_Chi_Minh',
   weekdays: persistedWeekdays,
   windows,
   overrides = [],

@@ -20,7 +20,7 @@ export type AdminOverviewProps = {
   photosDraftCount: number
 }
 
-const ownerTimeZone = 'Asia/Taipei'
+const ownerTimeZone = 'Asia/Ho_Chi_Minh'
 const nextSessionOptions: Intl.DateTimeFormatOptions = {
   timeZone: ownerTimeZone,
   month: 'short',

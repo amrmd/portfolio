@@ -1,14 +1,14 @@
 export const publicPageMetadata = {
   home: {
     zh: {
-      title: 'Cali Castle',
-      description: '设计工程师、Agent 指挥官、创意总监。',
-      ogDescription: '设计工程师、Agent 指挥官、创意总监。',
+      title: 'Amr Mohamed',
+      description: '数字营销专家、Agent 指挥官、创意总监。',
+      ogDescription: '数字营销专家、Agent 指挥官、创意总监。',
     },
     en: {
-      title: 'Cali Castle',
-      description: 'Design Engineer. Agent Orchestrator. Creative Director.',
-      ogDescription: 'Design Engineer. Agent Orchestrator. Creative Director.',
+      title: 'Amr Mohamed',
+      description: 'Digital Marketer. Agent Orchestrator. Creative Director.',
+      ogDescription: 'Digital Marketer. Agent Orchestrator. Creative Director.',
     },
   },
   blog: {

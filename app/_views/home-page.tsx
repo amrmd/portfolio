@@ -13,9 +13,8 @@ import { VinylShelf } from '~/components/vinyl-shelf'
 import { getAllPosts } from '~/lib/content'
 import { T } from '~/lib/i18n'
 import { localePath, type Locale } from '~/lib/locale-route'
-import { books, experience, records } from '~/lib/personal'
+import { books, homeExperience, records } from '~/lib/personal'
 import { projects } from '~/lib/projects'
-import { getGitHub, getSocial } from '~/lib/social-live'
 import { getHomepagePhotoPreview } from '~/lib/media/photo-selection/repository'
 import { getPublishedPhotoSelection } from '~/lib/media/photo-selection/server'
 
@@ -43,7 +42,6 @@ function SectionTitle({
 }
 
 export async function HomePageView({ locale }: { locale: Locale }) {
-  const [social, github] = await Promise.all([getSocial(), getGitHub()])
   const posts = getAllPosts()
   const latest = posts.slice(0, 5)
   const center = (latest.length - 1) / 2
@@ -57,26 +55,26 @@ export async function HomePageView({ locale }: { locale: Locale }) {
       <div className="flex flex-col-reverse justify-between gap-10 sm:flex-row sm:items-start">
         <div className="enter max-w-[19rem]">
           <div className="flex items-center gap-2">
-            <h1 className="text-base font-semibold tracking-tight text-foreground">Cali Castle</h1>
+            <h1 className="text-base font-semibold tracking-tight text-foreground">Amr Mohamed</h1>
             <PixelCluster variant={2} className="shrink-0" />
           </div>
           <div className="mt-4">
-            <HomeIntroduction social={social.x} github={github} />
+            <HomeIntroduction />
           </div>
         </div>
         <div className="w-[9.35rem] shrink-0 sm:w-60">
           <PortraitHiddenStage
             label={
               locale === 'en'
-                ? "Cali's halftone portrait. Reveal the hidden topographic field"
-                : 'Cali 的半调网点肖像。显现隐藏的等高线场'
+                ? "Amr's halftone portrait. Reveal the hidden topographic field"
+                : 'Amr 的半调网点肖像。显现隐藏的等高线场'
             }
           >
             <HalftonePortrait
-              srcLight="/images/headshot.jpg"
-              srcDark="/images/portrait-square.jpg"
-              alt="Cali 的半调网点肖像"
-              altEn="Cali's halftone portrait"
+              srcLight="/images/portrait-light.jpg"
+              srcDark="/images/portrait-dark.jpg"
+              alt="Amr 的半调网点肖像"
+              altEn="Amr's halftone portrait"
             />
           </PortraitHiddenStage>
         </div>
@@ -106,7 +104,7 @@ export async function HomePageView({ locale }: { locale: Locale }) {
           <T zh="经历" en="Experience" />
         </SectionTitle>
         <ul className="mt-4 flex flex-col">
-          {experience.map((job, i) => (
+          {homeExperience.map((job, i) => (
             <li
               key={job.company}
               className="enter-swing hairline-top"
@@ -135,7 +133,13 @@ export async function HomePageView({ locale }: { locale: Locale }) {
                   </span>
                 </div>
                 <span className="experience-date text-muted-foreground tabular-nums">
-                  {job.from}—{job.to ?? <T zh="现在" en="now" />}
+                  {job.to === job.from ? (
+                    job.from
+                  ) : (
+                    <>
+                      {job.from}—{job.to ?? <T zh="现在" en="now" />}
+                    </>
+                  )}
                 </span>
               </div>
             </li>

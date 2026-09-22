@@ -742,9 +742,9 @@ links carried forward from the earlier dual-DOM implementation.
 ## Footer colophon
 
 The leftmost desktop colophon puts the copyright at the top and Cali's local
-clock at the bottom. The clock shows the `UTC+8` timezone, a muted tabular live
-Asia/Taipei time in 12-hour `h:mm AM/PM` format without seconds, and a small
-redundant analog face. The readout is set as a small spec plate: the `UTC+8`
+clock at the bottom. The clock shows the `UTC+7` timezone, a muted tabular live
+Asia/Ho_Chi_Minh time in 12-hour `h:mm AM/PM` format without seconds, and a small
+redundant analog face. The readout is set as a small spec plate: the `UTC+7`
 label in 11px tracked uppercase mono over the 13px mono time value. Below the
 clock sits the geo stamp (`.footer-geo`): a hairline graticule globe beside a
 pinned coordinate (`22.4820° N / 113.9247° E`) — a quiet easter egg for anyone

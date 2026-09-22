@@ -1,4 +1,4 @@
-export const SITE_TIME_ZONE = 'Asia/Taipei'
+export const SITE_TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 const formatter = new Intl.DateTimeFormat('zh-CN', {
   year: 'numeric',

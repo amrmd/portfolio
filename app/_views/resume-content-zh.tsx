@@ -127,7 +127,7 @@ export function ChineseResumeSections({ content }: { content: ChineseResumeConte
 
 function ChineseResumeDraft() {
   const selectedProjects = projects.filter((project) =>
-    ['Cali Baby', 'Zolplay Website', 'Raycast · Apple Developer Docs', 'PopMenu'].includes(project.nameEn),
+    ['ChatGPT Slack Bot'].includes(project.nameEn),
   )
   return (
     <div className="resume-master resume-master-zh">
@@ -163,7 +163,7 @@ function ChineseResumeDraft() {
 }
 
 export function ChineseResumeContent({ content }: { content: ChineseResumeContentData | null }) {
-  const name = content?.name ?? 'Cali Castle'
+  const name = content?.name ?? 'Amr Mohamed'
   const names = name.split(/\s*\|\s*/)
   return (
     <article className="resume-content">
@@ -174,9 +174,9 @@ export function ChineseResumeContent({ content }: { content: ChineseResumeConten
             <span key={index} className={index ? 'resume-name-alternate' : undefined}>{part}</span>
           ))}
         </h1>
-        <p className="resume-role">{content?.title ?? '设计工程师 · 创始人 · 创意总监'}</p>
+        <p className="resume-role">{content?.title ?? '数字营销专家 · Agent 指挥官 · 创意总监'}</p>
         <div className="resume-introduction">
-          <p className="resume-intro">{content?.summary ?? '我是两个孩子的父亲、设计工程师，也是智能体编排者。我创立了佐玩 Zolplay，一家 AI 原生设计工作室，打造产品、品牌与数字体验。我喜欢把细节做到刚刚好。'}</p>
+          <p className="resume-intro">{content?.summary ?? '我是 Amr，PV 的创始人，一家 AI 原生设计工作室。我的工作涵盖 Web、iOS、工程、产品设计和独立产品，帮助创业公司把想法变成实际产品。我喜欢把细节做到刚刚好。'}</p>
           <ResumeContact phone={content?.phone} />
         </div>
       </header>

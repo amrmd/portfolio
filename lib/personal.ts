@@ -18,6 +18,16 @@ export const experience: Experience[] = [
   { company: 'Abletive 电子音乐社区', companyEn: 'Abletive', role: '创始人 & 独立开发者', roleEn: 'Founder & indie dev', from: 2014, to: 2016 },
 ]
 
+// Home page Experience section. Kept apart from `experience` so the private
+// résumé pages are unaffected. A job with `from === to` renders as one year.
+export const homeExperience: Experience[] = [
+  { company: 'Primitive Vision AI Developing Services', companyEn: 'Primitive Vision AI Developing Services', role: 'AI Developer & Consultant', roleEn: 'AI Developer & Consultant', from: 2025, to: 2026 },
+  { company: 'Mawdie Marketing Consultancy', companyEn: 'Mawdie Marketing Consultancy', role: 'Digital Marketing Specialist', roleEn: 'Digital Marketing Specialist', from: 2021, to: 2025 },
+  { company: 'PLab Public Health Services', companyEn: 'PLab Public Health Services', role: 'Sales Manager', roleEn: 'Sales Manager', from: 2019, to: 2020 },
+  { company: 'Amaar Travel Agency', companyEn: 'Amaar Travel Agency', role: 'Sales Executive', roleEn: 'Sales Executive', from: 2016, to: 2018 },
+  { company: 'National Bank of Egypt', companyEn: 'National Bank of Egypt', role: 'Graduate Intern', roleEn: 'Graduate Intern', from: 2015, to: 2015 },
+]
+
 export interface Record_ {
   artist: string
   album: string
@@ -67,7 +77,7 @@ export interface Book {
   url?: string
 }
 
-// 书架 — ordered by relevance to Cali's design, creative, and founder work.
+// 书架 — ordered by relevance to Amr's design, creative, and founder work.
 export const books: Book[] = [
   { title: 'Grid Systems in Graphic Design', spineTitle: 'Grid Systems', spineAuthor: 'JMB', author: 'Josef Müller-Brockmann', year: 1981, category: 'Graphic Design', spineColor: '#df6029', spineInk: '#171717', art: '/images/books/grid-systems.jpg', coverWidth: 411, coverHeight: 600, spine: 24, url: 'https://niggli.ch/en/products/rastersysteme-fur-die-visuelle-gestaltung' },
   { title: 'Refactoring UI', spineAuthor: 'AW+SS', author: 'Adam Wathan & Steve Schoger', year: 2018, category: 'UI Design', spineColor: '#2e3849', spineInk: '#f7f4ed', art: '/images/books/refactoring-ui.jpg', coverWidth: 758, coverHeight: 1014, spine: 24, url: 'https://refactoringui.com/' },

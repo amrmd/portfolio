@@ -43,7 +43,7 @@ describe('Availability Window repository', () => {
   })
 
   it('returns the default schedule time zone and persists an owner change', async () => {
-    await expect(repository.getTimeZone()).resolves.toBe('Asia/Taipei')
+    await expect(repository.getTimeZone()).resolves.toBe('Asia/Ho_Chi_Minh')
 
     await repository.setTimeZone('America/Los_Angeles')
 

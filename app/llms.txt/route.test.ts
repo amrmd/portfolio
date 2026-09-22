@@ -2,7 +2,6 @@ import { describe, expect, it, vi } from 'vitest'
 
 vi.mock('server-only', () => ({}))
 
-import { CALI_BABY_APP_STORE_URL } from '~/lib/calibaby-public-content'
 import { getAllPosts } from '~/lib/content'
 import { archivedNewsletterIds } from '~/lib/newsletters'
 import { projects } from '~/lib/projects'
@@ -14,22 +13,12 @@ describe('llms.txt', () => {
   it('publishes a concise Markdown map of every public content family', () => {
     const text = buildLlmsText()
 
-    expect(text).toMatch(/^# Cali Castle and Cali Baby\n\n>/)
+    expect(text).toMatch(/^# Amr Mohamed\n\n>/)
     expect(text.length).toBeGreaterThan(50)
-    expect(text).toContain(CALI_BABY_APP_STORE_URL)
+    expect(text).not.toContain('calibaby')
+    expect(text).not.toContain('Cali Baby')
 
-    for (const path of [
-      '/',
-      '/en',
-      '/calibaby',
-      '/en/calibaby',
-      '/calibaby/help',
-      '/en/calibaby/help',
-      '/calibaby/privacy',
-      '/en/calibaby/privacy',
-      '/calibaby/terms',
-      '/en/calibaby/terms',
-    ]) {
+    for (const path of ['/', '/en']) {
       expect(text).toContain(`](${new URL(path, seo.url).href})`)
     }
 

@@ -27,8 +27,8 @@ const SPEC_ROWS = [
   {
     zhLabel: '形式',
     enLabel: 'Format',
-    zhValue: 'Google Meet 或腾讯会议',
-    enValue: 'Google Meet or Tencent Meeting',
+    zhValue: 'Google Meet',
+    enValue: 'Google Meet',
   },
   { zhLabel: '需提前', enLabel: 'Notice', zhValue: '24 小时', enValue: '24 hours' },
   {
@@ -59,27 +59,6 @@ const STEPS = [
   {
     zh: '同一封邮件里也有管理链接。之后想改期或取消，点进去就行。',
     en: 'That email also includes your Manage Link, where you can reschedule or cancel.',
-  },
-] as const
-
-const TESTIMONIALS = [
-  {
-    zh: '感谢上次的在线聊天。目前我已经拿到了 3 个 offer，选择了一个。',
-    en: 'Thank you for the chat last time. I have since received three offers and accepted one.',
-    zhAttribution: '一位工程师，2023',
-    enAttribution: 'An engineer, 2023',
-  },
-  {
-    zh: '上线了一个 MVP 之后，公司立刻把我转正，不用三个月的试用期考察！',
-    en: 'After I shipped an MVP in my first week, the company converted me to full time right away, skipping the three month probation.',
-    zhAttribution: '一位工程师，2023',
-    enAttribution: 'An engineer, 2023',
-  },
-  {
-    zh: '非常感谢您今天 AMA 的分享，听完之后收获很多，也觉得您的经验和建议很真诚、很有启发，解答了我很多问题 😁😁',
-    en: 'Thank you so much for today’s AMA. I learned a lot, and your experience and advice felt sincere and insightful. You answered so many of my questions.',
-    zhAttribution: '一位大学生，2026',
-    enAttribution: 'A university student, 2026',
   },
 ] as const
 
@@ -292,11 +271,7 @@ export function AmaPageView({ locale }: { locale: Locale }) {
           {locale === 'zh' ? (
             <div className="page-introduction flex flex-col gap-3">
               <p>
-                我是 Cali，佐玩（Zolplay）的创始人。Web、iOS、工程、产品设计和独立产品都亲手做过。通过佐玩，我也帮
-                Apple、Insta360 和多家 YC 创业公司做过策略、产品设计和产品落地。
-              </p>
-              <p>
-                更早之前，我在西雅图的游戏工作室参与过 Niantic、Microsoft 和 Google 的大型项目。
+                我是 Amr，PV 的创始人。Web、iOS、工程、产品设计和独立产品都亲手做过。通过 PV，我帮创业公司做策略、产品设计和产品落地。
               </p>
               <p>
                 现在，我把产品判断、设计、工程和运营连成了一套 software factory。想法从{' '}
@@ -306,11 +281,11 @@ export function AmaPageView({ locale }: { locale: Locale }) {
                 <AmaProductName name="Slack" />，跟团队继续推进。
               </p>
               <p>
-                我也自己部署了一套 OpenClaw，调度负责 PM、财务和日常运营的
+                我也自己部署了一套 Homelab，调度负责 PM、财务和日常运营与自动化的
                 agents。很多流程已经可以从头到尾自己跑完。
               </p>
               <p>
-                佐玩不是一人公司，但我会借用这套模式里好用的部分：把经验留进系统，把重复工作交给
+                PV 不是一人公司，但我会借用这套模式里好用的部分：把经验留进系统，把重复工作交给
                 agents，把人的注意力留给判断和品味。
               </p>
               <p>我相信，AI Native 最后会变成公司文化里少不了的一部分。</p>
@@ -318,14 +293,9 @@ export function AmaPageView({ locale }: { locale: Locale }) {
           ) : (
             <div className="page-introduction flex flex-col gap-4">
               <p>
-                I’m Cali, founder of Zolplay. My work spans web, iOS, engineering, product design,
-                and indie products. Through Zolplay, I’ve helped teams at Apple, Insta360, and
-                YC-backed startups with strategy, product design, and turning ideas into working
-                products.
-              </p>
-              <p>
-                Before that, I worked at game studios in Seattle on large projects with Niantic,
-                Microsoft, and Google.
+                I’m Amr, founder of PV. My work spans web, iOS, engineering, product design,
+                and indie products. Through PV, I help startups with strategy, product design,
+                and turning ideas into working products.
               </p>
               <p>
                 My software factory connects product judgment, design, engineering, and operations.
@@ -335,11 +305,12 @@ export function AmaPageView({ locale }: { locale: Locale }) {
                 review; the work returns to <AmaProductName name="Slack" /> and the team.
               </p>
               <p>
-                I also run a self-hosted OpenClaw setup that orchestrates agents across PM, finance,
-                and day-to-day operations. Many processes now run end to end on their own.
+                I also run a self-hosted Homelab setup that orchestrates agents across PM, finance,
+                and day-to-day operations and automations. Many processes now run end to end on
+                their own.
               </p>
               <p>
-                Zolplay isn’t a one-person company. But I borrow the useful part of that model: put
+                PV isn’t a one-person company. But I borrow the useful part of that model: put
                 knowledge into systems, hand repetitive work to agents, and keep human attention
                 on judgment and taste.
               </p>
@@ -427,35 +398,6 @@ export function AmaPageView({ locale }: { locale: Locale }) {
             'If we’re at least 24 hours out, you can reschedule or cancel for free. Cancellations are refunded automatically. Inside 24 hours, refunds are no longer automatic.',
           )}
         </p>
-      </section>
-
-      <section className="mt-12" aria-labelledby="ama-notes-heading">
-        <div id="ama-notes-heading">
-          <SectionHeading
-            index="05"
-            locale={locale}
-            zh="聊过的人说"
-            en="What people said"
-            delay={290}
-          />
-        </div>
-        <div className="mt-4 flex flex-col gap-6">
-          {TESTIMONIALS.map((testimonial, index) => (
-            // `.hairline-top` is unlayered, so a Tailwind `first:border-t-0`
-            // utility can't override it — apply the divider by index instead.
-            <figure
-              key={testimonial.en}
-              className={index === 0 ? '' : 'hairline-top pt-4'}
-            >
-              <blockquote className="text-sm leading-6">
-                {localize(locale, `「${testimonial.zh}」`, `"${testimonial.en}"`)}
-              </blockquote>
-              <figcaption className="mt-2 text-[13px] text-muted-foreground">
-                {localize(locale, testimonial.zhAttribution, testimonial.enAttribution)}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
       </section>
 
       <div

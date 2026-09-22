@@ -25,10 +25,10 @@ describe('social OG image metadata', () => {
     const english = publicPageMetadata.home.en
 
     expect(imageAlt(metadataFor('zh', '/', chinese.title, chinese.description))).toBe(
-      'Cali Castle。设计工程师、Agent 指挥官、创意总监。',
+      'Amr Mohamed。数字营销专家、Agent 指挥官、创意总监。',
     )
     expect(imageAlt(metadataFor('en', '/', english.title, english.description))).toBe(
-      'Cali Castle. Design Engineer. Agent Orchestrator. Creative Director.',
+      'Amr Mohamed. Digital Marketer. Agent Orchestrator. Creative Director.',
     )
   })
 
@@ -37,37 +37,37 @@ describe('social OG image metadata', () => {
       'zh',
       '/blog',
       publicPageMetadata.blog.zh,
-      '写作 · Cali Castle。Cali 关于设计、工程、产品，以及一路上在意的人和事的文章。',
+      '写作 · Amr Mohamed。Cali 关于设计、工程、产品，以及一路上在意的人和事的文章。',
     ],
     [
       'en',
       '/blog',
       publicPageMetadata.blog.en,
-      'Writing · Cali Castle. Essays by Cali about design, engineering, products, and the people and ideas that matter along the way.',
+      'Writing · Amr Mohamed. Essays by Cali about design, engineering, products, and the people and ideas that matter along the way.',
     ],
     [
       'zh',
       '/photos',
       publicPageMetadata.photos.zh,
-      '照片 · Cali Castle。Cali 在工作、生活和旅途中留下的一些瞬间。',
+      '照片 · Amr Mohamed。Cali 在工作、生活和旅途中留下的一些瞬间。',
     ],
     [
       'en',
       '/photos',
       publicPageMetadata.photos.en,
-      'Photos · Cali Castle. Moments Cali has kept from work, life, and everywhere in between.',
+      'Photos · Amr Mohamed. Moments Cali has kept from work, life, and everywhere in between.',
     ],
     [
       'zh',
       '/projects',
       publicPageMetadata.projects.zh,
-      '项目 · Cali Castle。这些年做过的产品、开源工具和小实验。有些实用，有些只是好玩，但每一个我都认真做过。',
+      '项目 · Amr Mohamed。这些年做过的产品、开源工具和小实验。有些实用，有些只是好玩，但每一个我都认真做过。',
     ],
     [
       'en',
       '/projects',
       publicPageMetadata.projects.en,
-      'Projects · Cali Castle. Products, open-source tools, and small experiments I have made over the years. Some useful, some playful, all made with care.',
+      'Projects · Amr Mohamed. Products, open-source tools, and small experiments I have made over the years. Some useful, some playful, all made with care.',
     ],
   ] as const)(
     'describes the %s %s artwork with its own content',
@@ -86,7 +86,7 @@ describe('social OG image metadata', () => {
           '文章摘要',
         ),
       ),
-    ).toBe('按钮真的需要手指光标吗？ · Cali Castle')
+    ).toBe('按钮真的需要手指光标吗？ · Amr Mohamed')
     expect(
       imageAlt(
         metadataFor(
@@ -96,6 +96,6 @@ describe('social OG image metadata', () => {
           'Archive summary',
         ),
       ),
-    ).toBe('Cali.so Monthly Update Newsletter 01 · Cali Castle')
+    ).toBe('Cali.so Monthly Update Newsletter 01 · Amr Mohamed')
   })
 })

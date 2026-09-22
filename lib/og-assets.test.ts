@@ -5,10 +5,8 @@ vi.mock('next/cache', () => ({ cacheLife: vi.fn() }))
 import { publicImageDataUri } from './og'
 
 describe('OG image assets', () => {
-  it('embeds the official App Store badge as SVG', async () => {
-    const badge = await publicImageDataUri(
-      '/images/calibaby/app-store-badge-en-us.svg',
-    )
+  it('embeds a public SVG asset as a base64 data URI', async () => {
+    const badge = await publicImageDataUri('/images/xiaohongshu-wordmark.svg')
 
     expect(badge).toMatch(/^data:image\/svg\+xml;base64,/)
   })

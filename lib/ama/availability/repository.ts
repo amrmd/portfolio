@@ -11,7 +11,7 @@ import {
   amaAvailabilityWindows,
 } from '~/db/schema'
 
-export const DEFAULT_AVAILABILITY_TIME_ZONE = 'Asia/Taipei'
+export const DEFAULT_AVAILABILITY_TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 export type AvailabilityDatabase = ReturnType<typeof getDatabase>
 

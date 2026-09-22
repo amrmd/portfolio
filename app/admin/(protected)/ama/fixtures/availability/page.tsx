@@ -97,7 +97,7 @@ function fixtureProps(scenario: Scenario): AmaSettingsProps {
           ]
         : []
   return {
-    timeZone: 'Asia/Taipei',
+    timeZone: 'Asia/Ho_Chi_Minh',
     weekdays: [
       { isoWeekday: 1, enabled: populated },
       { isoWeekday: 2, enabled: false },
@@ -125,7 +125,7 @@ function fixtureProps(scenario: Scenario): AmaSettingsProps {
       status,
       identity: {
         calendarId: 'fixture-owner@example.com',
-        summary: 'Cali Castle Fixture Calendar',
+        summary: 'Amr Mohamed Fixture Calendar',
         email: 'fixture-owner@example.com',
       },
     },

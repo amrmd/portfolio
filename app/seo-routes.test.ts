@@ -50,7 +50,6 @@ describe('localized discovery routes', () => {
       '/photos',
       '/projects',
       '/ama',
-      '/calibaby',
       ...archivedNewsletterIds.map((id) => `/newsletters/${id}`),
       ...getAllPosts().map((post) => `/blog/${post.slug}`),
     ]
@@ -76,6 +75,7 @@ describe('localized discovery routes', () => {
     }
 
     for (const path of [
+      '/calibaby',
       '/calibaby/help',
       '/calibaby/privacy',
       '/calibaby/terms',

@@ -27,10 +27,10 @@ export function ResumeContent({ locale }: { locale: Locale }) {
 
   const englishContent = locale === 'en' ? getEnglishResumeContent() : null
   const localizedContent = englishContent
-  const name = localizedContent?.name ?? 'Cali Castle'
+  const name = localizedContent?.name ?? 'Amr Mohamed'
   const names = name.split(/\s*\|\s*/)
   const selectedProjects = projects.filter((project) =>
-    ['Cali Baby', 'Zolplay Website', 'Raycast · Apple Developer Docs', 'PopMenu'].includes(project.nameEn),
+    ['ChatGPT Slack Bot'].includes(project.nameEn),
   )
 
   return (
@@ -42,11 +42,11 @@ export function ResumeContent({ locale }: { locale: Locale }) {
             <span key={index} className={index ? 'resume-name-alternate' : undefined}>{part}</span>
           ))}
         </h1>
-        <p className="resume-role">{localizedContent?.title ?? localize(locale, '设计工程师 · 创始人 · 创意总监', 'Design engineer · Founder · Creative director')}</p>
+        <p className="resume-role">{localizedContent?.title ?? localize(locale, '数字营销专家 · Agent 指挥官 · 创意总监', 'Digital Marketer · Agent Orchestrator · Creative Director')}</p>
         <div className="resume-introduction">
           <p className="resume-intro">{localizedContent?.summary ?? localize(locale,
-            '我是两个孩子的父亲、设计工程师，也是智能体编排者。我创立了佐玩 Zolplay，一家 AI 原生设计工作室，打造产品、品牌与数字体验。我喜欢把细节做到刚刚好。',
-            'I’m a father of two, a design engineer, and an agent orchestrator. I founded Zolplay, an AI-native design studio creating products, brands, and digital experiences. I love getting the details just right.')}</p>
+            '我是 Amr，PV 的创始人，一家 AI 原生设计工作室。我的工作涵盖 Web、iOS、工程、产品设计和独立产品，帮助创业公司把想法变成实际产品。我喜欢把细节做到刚刚好。',
+            'I’m Amr, founder of PV, an AI-native design studio. My work spans web, iOS, engineering, product design, and indie products, helping startups turn ideas into working products. I love getting the details just right.')}</p>
           <ResumeContact phone={localizedContent?.phone} />
         </div>
       </header>

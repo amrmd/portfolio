@@ -207,7 +207,7 @@ function ZonedTimes({ iso, guestTimeZone }: { iso: string; guestTimeZone: string
         zh={zonedDateTime(iso, OWNER_TIME_ZONE, 'zh')}
         en={zonedDateTime(iso, OWNER_TIME_ZONE, 'en')}
       />
-      {' '}(Asia/Taipei)
+      {' '}(Asia/Ho_Chi_Minh)
       <span aria-hidden="true"> · </span>
       <T
         zh={zonedDateTime(iso, guestTimeZone, 'zh')}
@@ -803,7 +803,7 @@ export function BookingDetail({
                 zh={zonedDateTime(booking.createdAt, OWNER_TIME_ZONE, 'zh')}
                 en={zonedDateTime(booking.createdAt, OWNER_TIME_ZONE, 'en')}
               />
-              {' '}(Asia/Taipei)
+              {' '}(Asia/Ho_Chi_Minh)
             </span>
           </DefinitionRow>
         </dl>

@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from 'react'
 
-const taipeiClockTime = new Intl.DateTimeFormat('en-GB', {
-  timeZone: 'Asia/Taipei',
+const vietnamClockTime = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Asia/Ho_Chi_Minh',
   hourCycle: 'h23',
   hour: '2-digit',
   minute: '2-digit',
   second: '2-digit',
 })
 
-const taipeiTimeLabel = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'Asia/Taipei',
+const vietnamTimeLabel = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Asia/Ho_Chi_Minh',
   hour12: true,
   hour: 'numeric',
   minute: '2-digit',
@@ -21,7 +21,7 @@ function timeParts(date: Date | null) {
   if (!date) return { hour: 0, minute: 0, second: 0, label: '--:-- --' }
 
   const parts = Object.fromEntries(
-    taipeiClockTime
+    vietnamClockTime
       .formatToParts(date)
       .filter((part) => part.type !== 'literal')
       .map((part) => [part.type, part.value]),
@@ -34,7 +34,7 @@ function timeParts(date: Date | null) {
     hour,
     minute,
     second,
-    label: taipeiTimeLabel.format(date),
+    label: vietnamTimeLabel.format(date),
   }
 }
 
@@ -109,11 +109,11 @@ export function FooterClock() {
         <circle className="footer-clock-pin" cx="16" cy="16" r="1" />
       </svg>
       <span className="footer-time-readout">
-        <span>UTC+8</span>
+        <span>UTC+7</span>
         <time
           dateTime={now?.toISOString()}
           aria-label={
-            now ? `Current time in Taipei, UTC+8: ${label}` : 'Current time in Taipei, UTC+8'
+            now ? `Current time in Vietnam, UTC+7: ${label}` : 'Current time in Vietnam, UTC+7'
           }
         >
           {label}

@@ -17,7 +17,7 @@ import type {
 import { T } from '~/lib/i18n'
 import { localize, useLocale, type Locale } from '~/lib/locale-client'
 
-export const OWNER_TIME_ZONE = 'Asia/Taipei'
+export const OWNER_TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 export type BookingRowViewModel = {
   id: string
@@ -381,7 +381,7 @@ export function OperationsList({
                         zh={`下次尝试 ${zonedDateTime(operation.nextAttemptAt, OWNER_TIME_ZONE, 'zh')}`}
                         en={`Next attempt ${zonedDateTime(operation.nextAttemptAt, OWNER_TIME_ZONE, 'en')}`}
                       />
-                      {' '}(Asia/Taipei)
+                      {' '}(Asia/Ho_Chi_Minh)
                     </span>
                     {operation.lastErrorCode && (
                       <code className="font-mono text-destructive">

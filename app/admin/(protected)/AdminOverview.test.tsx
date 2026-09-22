@@ -14,7 +14,7 @@ const fixtures: AdminOverviewProps = {
   nextBooking: {
     id: 'bk_next',
     guestName: 'Ada Lovelace',
-    // 02:00Z is 10:00 in the owner zone (Asia/Taipei).
+    // 02:00Z is 09:00 in the owner zone (Asia/Ho_Chi_Minh).
     startsAt: '2026-08-01T02:00:00.000Z',
   },
   newTimeRequestCount: 1,
@@ -41,7 +41,7 @@ describe('Admin overview', () => {
     const nextRow = linkWithHref(container, '/admin/ama/bookings/bk_next')!
     expect(nextRow).not.toBeNull()
     expect(nextRow.textContent).toContain('Ada Lovelace')
-    expect(nextRow.textContent).toContain('10:00')
+    expect(nextRow.textContent).toContain('09:00')
 
     expect(text).toContain('Time requests')
     expect(text).toContain('1 ')

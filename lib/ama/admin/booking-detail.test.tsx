@@ -150,7 +150,7 @@ describe('AMA booking detail', () => {
     expect(text).not.toContain('{"kind":"issue_refund"}')
     // A nested detail keeps the JSON fallback.
     expect(text).toContain('{"calendar":{"eventId":"gcal_evt_1"}}')
-    expect(text).toContain('(Asia/Taipei)')
+    expect(text).toContain('(Asia/Ho_Chi_Minh)')
     expect(text).toContain('(America/New_York)')
     // Operations for this Booking render with the shared rows.
     expect(text).toContain('Send reminder')
@@ -343,9 +343,9 @@ describe('AMA booking detail', () => {
 
     fireEvent.click(buttonWithText(container, 'Reschedule'))
 
-    // 02:00Z is 10:00 in the owner zone (Asia/Taipei).
-    await waitFor(() => buttonWithText(container, '10:00'))
-    fireEvent.click(buttonWithText(container, '10:00'))
+    // 02:00Z is 09:00 in the owner zone (Asia/Ho_Chi_Minh).
+    await waitFor(() => buttonWithText(container, '09:00'))
+    fireEvent.click(buttonWithText(container, '09:00'))
     fireEvent.click(buttonWithText(container, 'Confirm reschedule'))
 
     await waitFor(() => expect(container.textContent).toContain('Rescheduled.'))
@@ -370,8 +370,8 @@ describe('AMA booking detail', () => {
     const { container } = renderDetail()
 
     fireEvent.click(buttonWithText(container, 'Reschedule'))
-    await waitFor(() => buttonWithText(container, '10:00'))
-    fireEvent.click(buttonWithText(container, '10:00'))
+    await waitFor(() => buttonWithText(container, '09:00'))
+    fireEvent.click(buttonWithText(container, '09:00'))
     fireEvent.click(buttonWithText(container, 'Confirm reschedule'))
 
     await waitFor(() =>
@@ -458,8 +458,8 @@ describe('AMA booking detail', () => {
     )
 
     fireEvent.click(buttonWithText(container, 'Reschedule'))
-    await waitFor(() => buttonWithText(container, '10:00'))
-    fireEvent.click(buttonWithText(container, '10:00'))
+    await waitFor(() => buttonWithText(container, '09:00'))
+    fireEvent.click(buttonWithText(container, '09:00'))
     fireEvent.click(buttonWithText(container, 'Confirm reschedule'))
     await waitFor(() => expect(container.textContent).toContain('Rescheduled.'))
 

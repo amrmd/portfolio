@@ -7,7 +7,6 @@ import { SlotPicker, type PublicSlot } from '~/components/ama/slot-picker'
 import { Button } from '~/components/ui/button'
 import { CheckboxGroup, CheckboxItem } from '~/components/ui/checkbox-group'
 import { Input } from '~/components/ui/input'
-import { RadioGroup, RadioItem } from '~/components/ui/radio-group'
 import { Textarea } from '~/components/ui/textarea'
 import { trackFunnelEvent } from '~/lib/analytics'
 import { AMA_TOPIC_LABELS, AMA_TOPICS, type AmaTopic } from '~/lib/ama/booking/topics'
@@ -366,7 +365,6 @@ export function BookingFlow() {
   const [topics, setTopics] = useState<AmaTopic[]>([])
   const [brief, setBrief] = useState('')
   const [urls, setUrls] = useState<[string, string, string]>(['', '', ''])
-  const [provider, setProvider] = useState<'google-meet' | 'tencent-meeting'>('google-meet')
 
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<FieldKey, true>>>({})
   const [notice, setNotice] = useState<NoticeKey>(null)
@@ -557,7 +555,7 @@ export function BookingFlow() {
         topics,
         brief: brief.trim(),
         urls: urls.map((url) => url.trim()).filter(Boolean),
-        provider,
+        provider: 'google-meet',
       })
 
       if (response.status === 201) {
@@ -1021,34 +1019,6 @@ export function BookingFlow() {
                 )
               })}
             </div>
-          </fieldset>
-
-          <fieldset className="flex flex-col gap-4" disabled={submitting}>
-            <legend className="mb-5 flex items-center gap-2.5">
-              <SectionHeading index={5} zh="会议方式" en="Meeting" />
-            </legend>
-            <RadioGroup
-              value={provider}
-              onValueChange={(value) => {
-                if (!submitting) setProvider(value as 'google-meet' | 'tencent-meeting')
-              }}
-              className="quiet-selection w-full"
-            >
-              {(
-                [
-                  { value: 'google-meet', zh: 'Google Meet', en: 'Google Meet' },
-                  { value: 'tencent-meeting', zh: '腾讯会议', en: 'Tencent Meeting' },
-                ] as const
-              ).map((option, index) => (
-                <RadioItem
-                  key={option.value}
-                  index={index}
-                  value={option.value}
-                  label={localize(locale, option.zh, option.en)}
-                  className="h-11 touch-manipulation"
-                />
-              ))}
-            </RadioGroup>
           </fieldset>
 
           {notice && (

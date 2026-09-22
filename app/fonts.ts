@@ -15,20 +15,6 @@ const geistMono = Geist_Mono({
   display: 'swap',
 })
 
-const openRunde = localFont({
-  src: [
-    { path: './_fonts/OpenRunde-Regular.woff2', weight: '400' },
-    { path: './_fonts/OpenRunde-Medium.woff2', weight: '500' },
-    { path: './_fonts/OpenRunde-Semibold.woff2', weight: '600' },
-    { path: './_fonts/OpenRunde-Bold.woff2', weight: '700' },
-  ],
-  variable: '--font-open-runde',
-  display: 'swap',
-  adjustFontFallback: false,
-})
-
-// Shared CJK fallback: the public site keeps Geist, while Cali Baby uses
-// Open Runde for Latin glyphs.
 const frexSansGB = localFont({
   src: [
     { path: './_fonts/FrexSansGB-Regular.woff2', weight: '400' },
@@ -52,8 +38,3 @@ export function fontVariablesForLocale(locale: Locale) {
     .join(' ')
 }
 
-export function caliBabyFontVariablesForLocale(locale: Locale) {
-  return [openRunde.variable, cjkFontVariableForLocale(locale)]
-    .filter(Boolean)
-    .join(' ')
-}

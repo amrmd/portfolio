@@ -285,7 +285,7 @@ function AlternateTimeRequests({
                         zh={`${zonedDateTime(request.createdAt, OWNER_TIME_ZONE, 'zh')} 提交`}
                         en={`Sent ${zonedDateTime(request.createdAt, OWNER_TIME_ZONE, 'en')}`}
                       />
-                      {' '}(Asia/Taipei)
+                      {' '}(Asia/Ho_Chi_Minh)
                     </span>
                   </p>
                   <p className="mt-2 whitespace-pre-wrap leading-6">

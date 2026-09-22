@@ -25,8 +25,8 @@ describe('public content proxy', () => {
   })
 
   it.each([
-    '/blog/how-to-add-rss-to-your-nextjs-app-router',
-    '/en/blog/how-to-add-rss-to-your-nextjs-app-router',
+    '/blog/image-based-prompt-injection',
+    '/en/blog/image-based-prompt-injection',
     '/newsletters/1',
     '/en/newsletters/1',
   ])('passes through a published content route without Clerk: %s', async (pathname) => {
