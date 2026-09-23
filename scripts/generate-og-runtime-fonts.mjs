@@ -20,7 +20,7 @@ async function sourceFiles(directory) {
 
 const contentFiles = (
   await Promise.all(
-    ['content/blog', 'content/newsletters'].map((directory) =>
+    ['content/blog'].map((directory) =>
       sourceFiles(path.join(root, directory)),
     ),
   )

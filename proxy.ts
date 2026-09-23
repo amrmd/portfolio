@@ -2,10 +2,7 @@ import { clerkMiddleware } from '@clerk/nextjs/server'
 import type { NextFetchEvent, NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-import {
-  isArchivedNewsletterId,
-  isPublishedPostSlug,
-} from './lib/public-content-routes'
+import { isPublishedPostSlug } from './lib/public-content-routes'
 
 function missingPublicContent(pathname: string) {
   const postMatch = pathname.match(/^\/(?:en\/)?blog\/([^/]+)\/?$/)
@@ -15,12 +12,7 @@ function missingPublicContent(pathname: string) {
     return !isPublishedPostSlug(slug)
   }
 
-  const newsletterMatch = pathname.match(
-    /^\/(?:en\/)?newsletters\/([^/]+)\/?$/,
-  )
-  return newsletterMatch
-    ? !isArchivedNewsletterId(newsletterMatch[1])
-    : false
+  return false
 }
 
 function isAdminPage(pathname: string) {
@@ -77,7 +69,5 @@ export const config = {
     '/api/admin/:path*',
     '/blog/:slug',
     '/en/blog/:slug',
-    '/newsletters/:id',
-    '/en/newsletters/:id',
   ],
 }

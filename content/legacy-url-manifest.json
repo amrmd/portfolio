@@ -114,20 +114,6 @@
 
     {
       "kind": "page",
-      "source": "/newsletters/1",
-      "probes": ["/newsletters/1"],
-      "status": 200,
-      "contains": "ARCHIVE / 001"
-    },
-    {
-      "kind": "page",
-      "source": "/en/newsletters/1",
-      "probes": ["/en/newsletters/1"],
-      "status": 200,
-      "contains": "ARCHIVE / 001"
-    },
-    {
-      "kind": "page",
       "source": "/confirm/:token",
       "probes": ["/confirm/manifest-secret-must-not-render"],
       "status": 200,

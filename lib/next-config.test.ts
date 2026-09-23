@@ -13,18 +13,7 @@ describe('server output tracing', () => {
         './content/blog/**/*',
         './app/_fonts/FrexSansGB-OG-*.ttf',
       ]),
-      '/newsletters/**': expect.arrayContaining([
-        './content/newsletters/**/*',
-        './app/_fonts/FrexSansGB-OG-*.ttf',
-      ]),
-      '/en/newsletters/**': expect.arrayContaining([
-        './content/newsletters/**/*',
-        './app/_fonts/FrexSansGB-OG-*.ttf',
-      ]),
-      '/content/\\[\\.\\.\\.path\\]': [
-        './content/blog/**/*',
-        './content/newsletters/**/*',
-      ],
+      '/content/\\[\\.\\.\\.path\\]': ['./content/blog/**/*'],
     })
   })
 })

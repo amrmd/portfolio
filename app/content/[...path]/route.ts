@@ -4,7 +4,7 @@ import path from 'node:path'
 // Serves colocated public-content images so content can live next to its MDX
 // (ADR-0001) without a public/ copy step.
 const ALLOWED =
-  /^(?:blog\/[a-z0-9-]+|newsletters\/[0-9]+)\/[A-Za-z0-9_-]+\.(png|jpe?g|webp|gif|avif)$/
+  /^blog\/[a-z0-9-]+\/[A-Za-z0-9_-]+\.(png|jpe?g|webp|gif|avif)$/
 
 const MIME: Record<string, string> = {
   png: 'image/png',

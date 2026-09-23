@@ -3,7 +3,6 @@ import { describe, expect, it, vi } from 'vitest'
 vi.mock('server-only', () => ({}))
 
 import { getAllPosts } from '~/lib/content'
-import { archivedNewsletterIds } from '~/lib/newsletters'
 import { projects } from '~/lib/projects'
 import { seo } from '~/lib/seo'
 
@@ -27,10 +26,7 @@ describe('llms.txt', () => {
       expect(text).toContain(new URL(`/en/blog/${post.slug}`, seo.url).href)
     }
 
-    for (const id of archivedNewsletterIds) {
-      expect(text).toContain(new URL(`/newsletters/${id}`, seo.url).href)
-      expect(text).toContain(new URL(`/en/newsletters/${id}`, seo.url).href)
-    }
+    expect(text).not.toContain('newsletters')
 
     for (const project of projects) {
       expect(text).toContain(new URL(project.url, seo.url).href)

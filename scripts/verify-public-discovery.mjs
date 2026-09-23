@@ -129,23 +129,6 @@ for (const slug of (await readdir(blogDirectory)).sort()) {
   )
 }
 
-const newsletterDirectory = new URL('../content/newsletters/', import.meta.url)
-for (const id of (await readdir(newsletterDirectory)).sort()) {
-  const zh = matter(await readFile(new URL(`${id}/index.mdx`, newsletterDirectory), 'utf8')).data
-  const en = matter(await readFile(new URL(`${id}/index.en.mdx`, newsletterDirectory), 'utf8')).data
-  publicPages.push(
-    ...localizedPages(
-      `/newsletters/${id}`,
-      zh,
-      en,
-      {
-        zh: `${zh.title} · Amr Mohamed`,
-        en: `${en.title} · Amr Mohamed`,
-      },
-    ),
-  )
-}
-
 function expectedCanonical(page) {
   return new URL(page.canonical ?? page.path, productionOrigin).href
 }

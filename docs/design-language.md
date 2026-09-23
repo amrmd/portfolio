@@ -262,8 +262,11 @@ open rich hover cards. The contract:
   link stable.
   Favicons and Open Graph images are served through the server-side cache at
   `/link-media` (`app/link-media/[kind]/route.ts`), allowlisted against the
-  snapshot so the proxy can't be aimed at arbitrary hosts; targets not yet in
-  the snapshot fall back to `og.zolplay.com` directly.
+  snapshot so the proxy can't be aimed at arbitrary hosts. Favicons resolve
+  through Google's public favicon endpoint (`lib/favicon.ts`), which redirects
+  to a `gstatic.com` subdomain to serve the icon; Open Graph images still
+  proxy through `og.zolplay.com`. Targets not yet in the snapshot fall back to
+  the same services directly from the browser.
   Favicon tone chips (`components/favicon-tone.ts`): the same-origin icon is
   pixel-sampled once on load, and a glyph that would vanish into the theme
   background — white-on-transparent in light mode, black-on-transparent in

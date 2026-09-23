@@ -13,8 +13,6 @@ describe('public content proxy', () => {
   it.each([
     '/blog/not-a-published-post',
     '/en/blog/not-a-published-post',
-    '/newsletters/not-an-id',
-    '/en/newsletters/not-an-id',
   ])('rewrites an unknown content route before streaming: %s', (pathname) => {
     const response = siteProxy(new NextRequest(`https://cali.so${pathname}`))
 
@@ -27,8 +25,6 @@ describe('public content proxy', () => {
   it.each([
     '/blog/image-based-prompt-injection',
     '/en/blog/image-based-prompt-injection',
-    '/newsletters/1',
-    '/en/newsletters/1',
   ])('passes through a published content route without Clerk: %s', async (pathname) => {
     const response = await proxy(
       new NextRequest(`https://cali.so${pathname}`),

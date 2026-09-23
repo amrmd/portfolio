@@ -277,7 +277,15 @@ export function ZoomImage({
       >
         <Image
           loader={renditions ? renditionLoader : undefined}
-          src={src}
+          // When every rendition is smaller than the declared width (the
+          // original photo's full size), the loader's only honest answer is
+          // the largest rendition, the same URL already passed as `src`.
+          // Next's loader-consistency check flags that exact match as a
+          // sign the loader ignores width, so break the string equality
+          // with a harmless fragment. It never reaches the loader or the
+          // network: `src` is only compared, not fetched, once a loader
+          // is set.
+          src={renditions ? `${src}#rendition` : src}
           alt={alt}
           width={width}
           height={height}

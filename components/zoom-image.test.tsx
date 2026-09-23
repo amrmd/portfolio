@@ -5,20 +5,31 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { ZoomImage } from './zoom-image'
 
+type ImageLoaderArgs = { src: string; width: number; quality?: number }
 type MockImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
-  loader?: unknown
+  loader?: (args: ImageLoaderArgs) => string
   unoptimized?: boolean
 }
 
 vi.mock('next/image', () => ({
-  default: ({
-    loader: _loader,
-    unoptimized: _unoptimized,
-    ...props
-  }: MockImageProps) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img {...props} />
-  ),
+  default: ({ loader, unoptimized: _unoptimized, src, ...props }: MockImageProps) => {
+    // Mirrors Next's own loader-consistency check (get-img-props.js): calling
+    // the loader with the declared width must not just echo `src` back, or
+    // Next warns "loader property that does not implement width" and the
+    // responsive srcset silently collapses to one size in production.
+    const loaderOutputForDeclaredWidth =
+      typeof loader === 'function' && typeof src === 'string'
+        ? loader({ src, width: Number(props.width) || 400, quality: 75 })
+        : undefined
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={src}
+        data-loader-output={loaderOutputForDeclaredWidth}
+        {...props}
+      />
+    )
+  },
 }))
 
 vi.mock('~/lib/locale-client', () => ({
@@ -86,6 +97,33 @@ describe('ZoomImage', () => {
     expect(
       createElement.mock.calls.filter(([tagName]) => tagName === 'img'),
     ).toHaveLength(1)
+  })
+
+  it('never lets the loader echo back `src` when the declared width exceeds every rendition', () => {
+    // Regression: published photos declare width/height as the original
+    // capture's full size, which is always larger than any generated
+    // rendition. The loader's honest answer then is the largest rendition,
+    // the same URL already passed as `src` — Next flags that exact string
+    // match as "loader does not implement width" (get-img-props.js) and
+    // falls back to serving one fixed size instead of a real srcset.
+    render(
+      <ZoomImage
+        src="https://cdn.example/renditions/photo/2560.jpg"
+        alt="Breakwater"
+        width={4032}
+        height={3024}
+        renditions={[
+          { src: 'https://cdn.example/renditions/photo/640.jpg', width: 640 },
+          { src: 'https://cdn.example/renditions/photo/2560.jpg', width: 2560 },
+        ]}
+      />,
+    )
+
+    const img = screen.getByRole('img', { name: 'Breakwater' })
+    const loaderOutput = img.getAttribute('data-loader-output')
+
+    expect(loaderOutput).toBe('https://cdn.example/renditions/photo/2560.jpg')
+    expect(img.getAttribute('src')).not.toBe(loaderOutput)
   })
 
   it('scales the detail reservation and mobile breakpoint with rem', () => {

@@ -1,15 +1,10 @@
 import { getPost, isPostSlug } from '~/lib/content'
 import {
   createHomeOgImage,
-  createNewsletterOgImage,
   createPostOgImage,
   createSectionOgImage,
 } from '~/lib/og-image'
 import type { Locale } from '~/lib/locale-route'
-import {
-  getArchivedNewsletter,
-  isArchivedNewsletterId,
-} from '~/lib/newsletters'
 import type { PublicSection } from '~/lib/public-page-metadata'
 
 const PUBLIC_SECTIONS = new Set<PublicSection>(['ama', 'blog', 'photos', 'projects'])
@@ -42,16 +37,6 @@ export async function GET(request: Request) {
 
   if (section === 'blog' && segments.length === 2 && isPostSlug(segments[1])) {
     return cachedImage(await createPostOgImage(getPost(segments[1]), locale))
-  }
-
-  if (
-    section === 'newsletters' &&
-    segments.length === 2 &&
-    isArchivedNewsletterId(segments[1])
-  ) {
-    return cachedImage(
-      await createNewsletterOgImage(getArchivedNewsletter(segments[1]), locale),
-    )
   }
 
   if (PUBLIC_SECTIONS.has(section as PublicSection)) {

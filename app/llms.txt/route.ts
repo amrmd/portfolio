@@ -1,10 +1,6 @@
 import { cacheLife } from 'next/cache'
 
 import { getAllPosts } from '~/lib/content'
-import {
-  archivedNewsletterIds,
-  getArchivedNewsletter,
-} from '~/lib/newsletters'
 import { projects } from '~/lib/projects'
 import { publicPageMetadata } from '~/lib/public-page-metadata'
 import { seo } from '~/lib/seo'
@@ -70,24 +66,6 @@ export function buildLlmsText() {
         post.description ?? `文章：${post.title}`,
       ),
     ]),
-    '',
-    '## Newsletter archive',
-    '',
-    ...archivedNewsletterIds.flatMap((id) => {
-      const newsletter = getArchivedNewsletter(id)
-      return [
-        markdownLink(
-          newsletter.titleEn,
-          absoluteUrl(`/en/newsletters/${id}`),
-          newsletter.descriptionEn,
-        ),
-        markdownLink(
-          newsletter.title,
-          absoluteUrl(`/newsletters/${id}`),
-          newsletter.description,
-        ),
-      ]
-    }),
     '',
     '## Projects',
     '',

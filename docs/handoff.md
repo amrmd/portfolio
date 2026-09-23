@@ -49,9 +49,11 @@ Current as of July 2026.
   across the public Chinese and English route families. Owner-admin routes
   stay excluded from public analytics.
 - External-link cards keep metadata in a committed snapshot refreshed through
-  `og.zolplay.com`; the same first-party service proxies fixed-slot favicons and
-  Open Graph images, and missing media remains a non-blocking presentation
-  failure.
+  `og.zolplay.com`, which still proxies Open Graph images. Fixed-slot favicons
+  instead resolve through Google's public favicon endpoint
+  (`lib/favicon.ts`), which redirects to a `gstatic.com` subdomain to serve
+  the icon — both hosts are allowed in `img-src`. Missing media remains a
+  non-blocking presentation failure.
 - The fixed bottom dock is the primary navigation. The visual contract lives
   in `docs/design-language.md`.
 - The owner admin is always reachable for Media and AMA operations, with

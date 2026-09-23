@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest'
 
 import { buildEnglishFeedXml } from '~/lib/feeds'
 import { getAllPosts } from '~/lib/content'
-import { archivedNewsletterIds } from '~/lib/newsletters'
 import { seo } from '~/lib/seo'
 
 import robots from './robots'
@@ -50,7 +49,6 @@ describe('localized discovery routes', () => {
       '/photos',
       '/projects',
       '/ama',
-      ...archivedNewsletterIds.map((id) => `/newsletters/${id}`),
       ...getAllPosts().map((post) => `/blog/${post.slug}`),
     ]
 
