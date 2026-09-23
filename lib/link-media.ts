@@ -1,4 +1,5 @@
 import previews from '~/content/link-previews.json'
+import { googleFaviconUrl } from '~/lib/favicon'
 import { ogZolplayUrl } from '~/lib/og-zolplay.mjs'
 
 // Targets the /link-media proxy will serve, derived from the build-time
@@ -36,7 +37,7 @@ export function upstreamLinkMediaUrl(kind: string, target: string): string | nul
     } catch {
       return null
     }
-    return faviconOrigins.has(origin) ? ogZolplayUrl('favicon', origin) : null
+    return faviconOrigins.has(origin) ? googleFaviconUrl(origin) : null
   }
 
   if (kind === 'image') {

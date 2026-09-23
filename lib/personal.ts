@@ -23,9 +23,6 @@ export const experience: Experience[] = [
 export const homeExperience: Experience[] = [
   { company: 'Primitive Vision AI Developing Services', companyEn: 'Primitive Vision AI Developing Services', role: 'AI Developer & Consultant', roleEn: 'AI Developer & Consultant', from: 2025, to: 2026 },
   { company: 'Mawdie Marketing Consultancy', companyEn: 'Mawdie Marketing Consultancy', role: 'Digital Marketing Specialist', roleEn: 'Digital Marketing Specialist', from: 2021, to: 2025 },
-  { company: 'PLab Public Health Services', companyEn: 'PLab Public Health Services', role: 'Sales Manager', roleEn: 'Sales Manager', from: 2019, to: 2020 },
-  { company: 'Amaar Travel Agency', companyEn: 'Amaar Travel Agency', role: 'Sales Executive', roleEn: 'Sales Executive', from: 2016, to: 2018 },
-  { company: 'National Bank of Egypt', companyEn: 'National Bank of Egypt', role: 'Graduate Intern', roleEn: 'Graduate Intern', from: 2015, to: 2015 },
 ]
 
 export interface Record_ {

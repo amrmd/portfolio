@@ -11,6 +11,8 @@ export interface LinkPreviewSnapshot {
 
 export function ogZolplayUrl(endpoint: OgZolplayEndpoint, target: string): string | null
 
+export function publicHttpUrl(target: string): URL | null
+
 export function normalizeOgMetadata(
   target: string,
   metadata: unknown,

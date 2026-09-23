@@ -17,6 +17,7 @@ import { books, homeExperience, records } from '~/lib/personal'
 import { projects } from '~/lib/projects'
 import { getHomepagePhotoPreview } from '~/lib/media/photo-selection/repository'
 import { getPublishedPhotoSelection } from '~/lib/media/photo-selection/server'
+import { getGitHub } from '~/lib/social-live'
 
 function SectionTitle({
   index,
@@ -42,6 +43,7 @@ function SectionTitle({
 }
 
 export async function HomePageView({ locale }: { locale: Locale }) {
+  const github = await getGitHub()
   const posts = getAllPosts()
   const latest = posts.slice(0, 5)
   const center = (latest.length - 1) / 2
@@ -59,7 +61,7 @@ export async function HomePageView({ locale }: { locale: Locale }) {
             <PixelCluster variant={2} className="shrink-0" />
           </div>
           <div className="mt-4">
-            <HomeIntroduction />
+            <HomeIntroduction github={github} />
           </div>
         </div>
         <div className="w-[9.35rem] shrink-0 sm:w-60">

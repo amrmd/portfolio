@@ -48,7 +48,7 @@ function contentSecurityPolicy(
     `script-src ${scriptSources}`,
     "script-src-attr 'none'",
     `style-src ${styleSources}`,
-    `img-src 'self' data: blob: https://og.zolplay.com${optionalMediaImageSource()}`,
+    `img-src 'self' data: blob: https://og.zolplay.com https://www.google.com${optionalMediaImageSource()}`,
     "font-src 'self' data:",
     `connect-src 'self'${connectSources}`,
     "media-src 'self' blob:",

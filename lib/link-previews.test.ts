@@ -21,9 +21,11 @@ describe('link preview media URLs', () => {
     )
   })
 
-  it('falls back to the service for targets missing from the snapshot', () => {
+  it('falls back to Google favicons for targets missing from the snapshot', () => {
+    // Favicon lookups no longer depend on the first-party og.zolplay.com
+    // service; OG preview images still do until that's revisited too.
     expect(faviconUrl('https://not-in-snapshot.example/articles/design')).toBe(
-      'https://og.zolplay.com/favicon/https%3A%2F%2Fnot-in-snapshot.example%2F',
+      'https://www.google.com/s2/favicons?domain=not-in-snapshot.example&sz=64',
     )
     expect(ogImageUrl('https://not-in-snapshot.example/articles/design')).toBe(
       'https://og.zolplay.com/image/https%3A%2F%2Fnot-in-snapshot.example%2Farticles%2Fdesign',
@@ -38,12 +40,12 @@ describe('link preview media URLs', () => {
 })
 
 describe('link media proxy allowlist', () => {
-  it('resolves allowlisted targets to their og.zolplay.com upstream', () => {
+  it('resolves allowlisted favicon targets to Google, and images to og.zolplay.com', () => {
     expect(upstreamLinkMediaUrl('favicon', 'https://astro.build')).toBe(
-      'https://og.zolplay.com/favicon/https%3A%2F%2Fastro.build%2F',
+      'https://www.google.com/s2/favicons?domain=astro.build&sz=64',
     )
     expect(upstreamLinkMediaUrl('favicon', 'https://astro.build/deep/page')).toBe(
-      'https://og.zolplay.com/favicon/https%3A%2F%2Fastro.build%2F',
+      'https://www.google.com/s2/favicons?domain=astro.build&sz=64',
     )
     expect(upstreamLinkMediaUrl('image', 'https://astro.build/')).toBe(
       'https://og.zolplay.com/image/https%3A%2F%2Fastro.build%2F',
@@ -52,7 +54,7 @@ describe('link media proxy allowlist', () => {
 
   it('serves chrome favicons outside prose', () => {
     expect(upstreamLinkMediaUrl('favicon', 'https://zolplay.com')).toBe(
-      'https://og.zolplay.com/favicon/https%3A%2F%2Fzolplay.com%2F',
+      'https://www.google.com/s2/favicons?domain=zolplay.com&sz=64',
     )
   })
 

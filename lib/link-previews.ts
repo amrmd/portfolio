@@ -1,4 +1,5 @@
 import previews from '~/content/link-previews.json'
+import { googleFaviconUrl } from '~/lib/favicon'
 import { linkMediaPath, upstreamLinkMediaUrl } from '~/lib/link-media'
 import {
   ogZolplayUrl,
@@ -31,7 +32,7 @@ export function faviconUrl(href: string): string | null {
     return null
   }
   if (upstreamLinkMediaUrl('favicon', origin)) return linkMediaPath('favicon', origin)
-  return ogZolplayUrl('favicon', origin)
+  return googleFaviconUrl(origin)
 }
 
 export function ogImageUrl(href: string): string | null {
