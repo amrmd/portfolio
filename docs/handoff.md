@@ -48,12 +48,14 @@ Current as of July 2026.
 - Vercel Web Analytics is instrumented to collect first-party page views
   across the public Chinese and English route families. Owner-admin routes
   stay excluded from public analytics.
-- External-link cards keep metadata in a committed snapshot refreshed through
-  `og.zolplay.com`, which still proxies Open Graph images. Fixed-slot favicons
-  instead resolve through Google's public favicon endpoint
-  (`lib/favicon.ts`), which redirects to a `gstatic.com` subdomain to serve
-  the icon — both hosts are allowed in `img-src`. Missing media remains a
-  non-blocking presentation failure.
+- External-link cards keep title/description metadata in a committed
+  snapshot, refreshed manually and build-time only through
+  `og.zolplay.com` (`scripts/refresh-link-previews.mjs`). There is no
+  runtime dependency on that service: fixed-slot favicons resolve through
+  Google's public favicon endpoint (`lib/favicon.ts`), which redirects to a
+  `gstatic.com` subdomain to serve the icon (both hosts allowed in
+  `img-src`), and cards are text-only with no Open Graph image slot.
+  Missing media remains a non-blocking presentation failure.
 - The fixed bottom dock is the primary navigation. The visual contract lives
   in `docs/design-language.md`.
 - The owner admin is always reachable for Media and AMA operations, with

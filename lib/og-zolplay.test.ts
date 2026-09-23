@@ -12,9 +12,6 @@ describe('og.zolplay.com link previews', () => {
     expect(ogZolplayUrl('favicon', target)).toBe(
       'https://og.zolplay.com/favicon/https%3A%2F%2Fexample.com%2Farticles%2Fdesign%3Flang%3Den%23preview',
     )
-    expect(ogZolplayUrl('image', target)).toBe(
-      'https://og.zolplay.com/image/https%3A%2F%2Fexample.com%2Farticles%2Fdesign%3Flang%3Den%23preview',
-    )
   })
 
   it.each([
@@ -50,7 +47,6 @@ describe('og.zolplay.com link previews', () => {
         {
           ogTitle: 'Zolplay (Design Studio)',
           ogDescription: 'A design studio for people with good taste.',
-          ogImage: [{ type: 'image/png', url: 'https://zolplay.com/opengraph-image' }],
         },
         {
           domain: 'zolplay.com',
@@ -64,7 +60,6 @@ describe('og.zolplay.com link previews', () => {
       titleEn: 'Zolplay (Design Studio)',
       description: 'A design studio for people with good taste.',
       descriptionEn: 'A design studio for people with good taste.',
-      hasImage: true,
     })
   })
 
@@ -75,7 +70,6 @@ describe('og.zolplay.com link previews', () => {
         {
           ogTitle: '设计 — Example',
           ogDescription: '面向设计师的平台',
-          ogImage: [],
         },
         {
           domain: 'example.com',
@@ -89,7 +83,6 @@ describe('og.zolplay.com link previews', () => {
       titleEn: 'Example for designers',
       description: '面向设计师的平台',
       descriptionEn: 'A platform for designers',
-      hasImage: false,
     })
   })
 
@@ -100,7 +93,6 @@ describe('og.zolplay.com link previews', () => {
         {
           ogTitle: 'Zolplay (Design Studio)',
           ogDescription: 'A design studio for people with good taste.',
-          ogImage: [{ url: 'https://zolplay.com/opengraph-image' }],
         },
         {
           domain: 'zolplay.com',
@@ -116,7 +108,6 @@ describe('og.zolplay.com link previews', () => {
       titleEn: 'Zolplay (Design Studio)',
       description: '一家位于深圳的 AI 原生设计工作室，打造产品、品牌与数字体验。',
       descriptionEn: 'A design studio for people with good taste.',
-      hasImage: true,
     })
   })
 
@@ -125,7 +116,6 @@ describe('og.zolplay.com link previews', () => {
       normalizeOgMetadata('https://example.com', {
         ogTitle: '纯中文标题',
         ogDescription: '只有中文的页面描述。',
-        ogImage: [],
       }),
     ).toEqual({
       domain: 'example.com',
@@ -133,7 +123,6 @@ describe('og.zolplay.com link previews', () => {
       titleEn: undefined,
       description: '只有中文的页面描述。',
       descriptionEn: undefined,
-      hasImage: false,
     })
   })
 })

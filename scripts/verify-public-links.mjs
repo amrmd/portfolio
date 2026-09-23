@@ -5,8 +5,14 @@ import { JSDOM } from 'jsdom'
 
 import { openProductionServer } from './production-server.mjs'
 
-const productionOrigin =
-  process.env.PUBLIC_LINKS_EXPECTED_ORIGIN ?? 'https://cali.so'
+const expectedOrigin =
+  process.env.PUBLIC_LINKS_EXPECTED_ORIGIN ?? process.env.SITE_URL
+if (!expectedOrigin) {
+  throw new Error(
+    'Set PUBLIC_LINKS_EXPECTED_ORIGIN or SITE_URL before running verify:links.',
+  )
+}
+const productionOrigin = new URL(expectedOrigin).origin
 const externalTimeoutMs = 12_000
 const externalConcurrency = 8
 const verifyExternal = process.env.VERIFY_EXTERNAL_LINKS === '1'
@@ -101,7 +107,7 @@ async function verifyExternalLink(href) {
       const response = await fetch(href, {
         headers: {
           accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.1',
-          'user-agent': 'cali.so release link verifier',
+          'user-agent': `${new URL(productionOrigin).hostname} release link verifier`,
         },
         redirect: 'follow',
         signal: AbortSignal.timeout(externalTimeoutMs),

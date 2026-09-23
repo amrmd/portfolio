@@ -1,10 +1,7 @@
 import previews from '~/content/link-previews.json'
 import { googleFaviconUrl } from '~/lib/favicon'
 import { linkMediaPath, upstreamLinkMediaUrl } from '~/lib/link-media'
-import {
-  ogZolplayUrl,
-  type LinkPreviewSnapshot,
-} from '~/lib/og-zolplay.mjs'
+import type { LinkPreviewSnapshot } from '~/lib/og-zolplay.mjs'
 
 export interface LinkPreview extends LinkPreviewSnapshot {}
 
@@ -33,9 +30,4 @@ export function faviconUrl(href: string): string | null {
   }
   if (upstreamLinkMediaUrl('favicon', origin)) return linkMediaPath('favicon', origin)
   return googleFaviconUrl(origin)
-}
-
-export function ogImageUrl(href: string): string | null {
-  if (upstreamLinkMediaUrl('image', href)) return linkMediaPath('image', href)
-  return ogZolplayUrl('image', href)
 }

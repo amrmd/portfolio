@@ -3126,31 +3126,6 @@ a:focus-visible .external-label .external-mark {
     transform 200ms var(--ease-swift);
 }
 
-/* Image-enabled preview cards: height comes from the content (the 16:9
-   frame still holds its slot while the image loads). Uniform padding so
-   the frame's corners run concentric with the card's. */
-.link-card-with-image {
-  padding: 0.625rem;
-}
-
-.link-card-image-frame {
-  display: block;
-  flex: none;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 2px;
-  background: color-mix(in oklch, var(--muted) 72%, var(--paper));
-  box-shadow: inset 0 0 0 1px var(--border);
-}
-
-.link-card-image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .external-link img[data-failed],
 .link-card img[data-failed],
 .ama-product-logo[data-failed] {

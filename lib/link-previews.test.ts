@@ -1,16 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
 import { upstreamLinkMediaUrl } from './link-media'
-import { faviconUrl, ogImageUrl } from './link-previews'
+import { faviconUrl } from './link-previews'
 
 describe('link preview media URLs', () => {
   it('routes known targets through the cached first-party proxy', () => {
-    // astro.build is in content/link-previews.json with hasImage: true
     expect(faviconUrl('https://astro.build/')).toBe(
       '/link-media/favicon?url=https%3A%2F%2Fastro.build',
-    )
-    expect(ogImageUrl('https://astro.build/')).toBe(
-      '/link-media/image?url=https%3A%2F%2Fastro.build%2F',
     )
   })
 
@@ -22,13 +18,8 @@ describe('link preview media URLs', () => {
   })
 
   it('falls back to Google favicons for targets missing from the snapshot', () => {
-    // Favicon lookups no longer depend on the first-party og.zolplay.com
-    // service; OG preview images still do until that's revisited too.
     expect(faviconUrl('https://not-in-snapshot.example/articles/design')).toBe(
       'https://www.google.com/s2/favicons?domain=not-in-snapshot.example&sz=64',
-    )
-    expect(ogImageUrl('https://not-in-snapshot.example/articles/design')).toBe(
-      'https://og.zolplay.com/image/https%3A%2F%2Fnot-in-snapshot.example%2Farticles%2Fdesign',
     )
   })
 
@@ -40,15 +31,12 @@ describe('link preview media URLs', () => {
 })
 
 describe('link media proxy allowlist', () => {
-  it('resolves allowlisted favicon targets to Google, and images to og.zolplay.com', () => {
+  it('resolves allowlisted favicon targets to Google', () => {
     expect(upstreamLinkMediaUrl('favicon', 'https://astro.build')).toBe(
       'https://www.google.com/s2/favicons?domain=astro.build&sz=64',
     )
     expect(upstreamLinkMediaUrl('favicon', 'https://astro.build/deep/page')).toBe(
       'https://www.google.com/s2/favicons?domain=astro.build&sz=64',
-    )
-    expect(upstreamLinkMediaUrl('image', 'https://astro.build/')).toBe(
-      'https://og.zolplay.com/image/https%3A%2F%2Fastro.build%2F',
     )
   })
 
@@ -60,9 +48,8 @@ describe('link media proxy allowlist', () => {
 
   it('rejects everything else', () => {
     expect(upstreamLinkMediaUrl('favicon', 'https://not-in-snapshot.example')).toBeNull()
-    // images match the exact page URL, never the bare origin
-    expect(upstreamLinkMediaUrl('image', 'https://astro.build/blog/some-post')).toBeNull()
     expect(upstreamLinkMediaUrl('favicon', 'not a url')).toBeNull()
     expect(upstreamLinkMediaUrl('metadata', 'https://astro.build')).toBeNull()
+    expect(upstreamLinkMediaUrl('image', 'https://astro.build')).toBeNull()
   })
 })

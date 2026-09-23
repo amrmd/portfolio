@@ -1,6 +1,5 @@
 import { ExternalLink } from '~/components/external-link'
 import { HomeIntroReplay } from '~/components/home-intro-replay'
-import { ExternalLabel } from '~/components/external-mark'
 import { EmailCard, GitHubCard, type GitHubSnapshot } from '~/components/social-cards'
 import { T } from '~/lib/i18n'
 import { faviconUrl, getLinkPreview } from '~/lib/link-previews'
@@ -147,30 +146,20 @@ function PVLink({ children }: { children: React.ReactNode }) {
   )
 }
 
-function XLink() {
-  return (
-    <a href="https://x.com/amrmd" target="_blank" rel="noreferrer" className="home-contact-link">
-      <ExternalLabel>@amrmd</ExternalLabel>
-    </a>
-  )
-}
-
 function HomeContact({ github }: { github: GitHubSnapshot }) {
   return (
     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
       <T
         zh={
           <>
-            可以在 <GitHubCard data={github} trigger="@github" triggerClassName="home-contact-link" /> 和{' '}
-            <XLink /> 找到我，也可以发邮件到{' '}
+            可以在 <GitHubCard data={github} trigger="GitHub" triggerClassName="home-contact-link" /> 找到我，也可以发邮件到{' '}
             <EmailCard address="hi@amr.md" trigger="hi@amr.md" triggerClassName="home-contact-link" />。
           </>
         }
         en={
           <>
             Find me at{' '}
-            <GitHubCard data={github} trigger="@github" triggerClassName="home-contact-link" /> and{' '}
-            <XLink /> or{' '}
+            <GitHubCard data={github} trigger="GitHub" triggerClassName="home-contact-link" /> or{' '}
             <EmailCard address="hi@amr.md" trigger="hi@amr.md" triggerClassName="home-contact-link" />
           </>
         }

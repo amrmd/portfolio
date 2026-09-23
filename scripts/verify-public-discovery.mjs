@@ -6,8 +6,14 @@ import { JSDOM } from 'jsdom'
 
 import { openProductionServer } from './production-server.mjs'
 
-const productionOrigin =
-  process.env.PUBLIC_DISCOVERY_EXPECTED_ORIGIN ?? 'https://cali.so'
+const expectedOrigin =
+  process.env.PUBLIC_DISCOVERY_EXPECTED_ORIGIN ?? process.env.SITE_URL
+if (!expectedOrigin) {
+  throw new Error(
+    'Set PUBLIC_DISCOVERY_EXPECTED_ORIGIN or SITE_URL before running verify:public-discovery.',
+  )
+}
+const productionOrigin = new URL(expectedOrigin).origin
 
 function localizedPages(pathname, zh, en, imageAlt) {
   const zhPath = pathname

@@ -250,23 +250,21 @@ open rich hover cards. The contract:
   prose carries a 14px inline favicon (fixed slot, no layout shift) — always
   requested against the link's root domain, never the deep URL, so a page
   that 404s or redirects can't fail the icon — and,
-  when build-time metadata exists in `content/link-previews.json`, a preview
-  card on the shared hover-card primitive (`components/external-link.tsx`).
-  The card is fixed-width; its height adapts to the content and never changes
-  after open. Image-enabled cards reserve one fixed 16:9 slot for the proxied
-  Open Graph image above the favicon, domain, and title — the image speaks
-  for the page, so the description renders only on image-less cards — with
-  the slot's corner radius concentric to the card's (outer radius minus
-  padding). A failed image degrades the card to its text form (description
-  included); a failed favicon hides in place, keeping its slot and the
-  link stable.
-  Favicons and Open Graph images are served through the server-side cache at
-  `/link-media` (`app/link-media/[kind]/route.ts`), allowlisted against the
-  snapshot so the proxy can't be aimed at arbitrary hosts. Favicons resolve
-  through Google's public favicon endpoint (`lib/favicon.ts`), which redirects
-  to a `gstatic.com` subdomain to serve the icon; Open Graph images still
-  proxy through `og.zolplay.com`. Targets not yet in the snapshot fall back to
-  the same services directly from the browser.
+  when build-time metadata exists in `content/link-previews.json`, a text
+  preview card (favicon, domain, title, description) on the shared
+  hover-card primitive (`components/external-link.tsx`). The card is
+  fixed-width; its height adapts to the content and never changes after
+  open. A failed favicon hides in place, keeping its slot and the link
+  stable. There is no Open Graph image slot: the card is text-only.
+  Favicons are served through the server-side cache at `/link-media`
+  (`app/link-media/[kind]/route.ts`), allowlisted against the snapshot so
+  the proxy can't be aimed at arbitrary hosts, and resolve through Google's
+  public favicon endpoint (`lib/favicon.ts`), which redirects to a
+  `gstatic.com` subdomain to serve the icon. Targets not yet in the
+  snapshot fall back to Google directly from the browser. Titles and
+  descriptions still come from `og.zolplay.com`'s metadata endpoint via the
+  manual `scripts/refresh-link-previews.mjs` refresh, a build-time-only
+  call with no runtime dependency on that service.
   Favicon tone chips (`components/favicon-tone.ts`): the same-origin icon is
   pixel-sampled once on load, and a glyph that would vanish into the theme
   background — white-on-transparent in light mode, black-on-transparent in

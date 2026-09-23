@@ -57,7 +57,12 @@ function expectedMutationOrigin(baseUrl) {
   if (process.env.SECURITY_BOUNDARY_BASE_URL) {
     return new URL(baseUrl).origin
   }
-  return new URL(process.env.SITE_URL ?? 'https://cali.so').origin
+  if (!process.env.SITE_URL) {
+    throw new Error(
+      'Set SECURITY_BOUNDARY_EXPECTED_ORIGIN or SITE_URL before running verify:security-boundary.',
+    )
+  }
+  return new URL(process.env.SITE_URL).origin
 }
 
 function rawHeaderValues(rawHeaders, name) {
@@ -324,14 +329,26 @@ async function verifyPublicAmaApiBoundary(baseUrl) {
       outcomes: [{ status: 400 }],
     },
     {
+      // A synthetic token: a configured provider finds no matching booking
+      // (404 not_found), same as the checkout route above; an unconfigured
+      // provider still fails closed with 503.
       path: '/api/ama/manage/security-boundary-token/cancel',
       requestBody: '{}',
-      outcomes: [{ status: 503 }],
+      outcomes: [
+        { status: 404, error: 'not_found' },
+        { status: 503 },
+      ],
     },
     {
+      // startsAt must parse (lib/ama/booking/http.ts's dateField) so the
+      // request reaches the token lookup instead of failing validation
+      // first; the token itself is still looked up before the date is used.
       path: '/api/ama/manage/security-boundary-token/reschedule',
-      requestBody: '{}',
-      outcomes: [{ status: 503 }],
+      requestBody: JSON.stringify({ startsAt: '2099-01-01T00:00:00.000Z' }),
+      outcomes: [
+        { status: 404, error: 'not_found' },
+        { status: 503 },
+      ],
     },
   ]
 

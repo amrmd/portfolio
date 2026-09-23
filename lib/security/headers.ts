@@ -50,8 +50,10 @@ function contentSecurityPolicy(
     `style-src ${styleSources}`,
     // Google's favicon endpoint (www.google.com/s2/favicons) redirects to a
     // gstatic.com subdomain to actually serve the image, so both hosts must
-    // be allowed or the browser blocks the redirect target.
-    `img-src 'self' data: blob: https://og.zolplay.com https://www.google.com https://*.gstatic.com${optionalMediaImageSource()}`,
+    // be allowed or the browser blocks the redirect target. og.zolplay.com
+    // is no longer an image source: it's used only by the build-time
+    // metadata-refresh script (Node, never the browser).
+    `img-src 'self' data: blob: https://www.google.com https://*.gstatic.com${optionalMediaImageSource()}`,
     "font-src 'self' data:",
     `connect-src 'self'${connectSources}`,
     "media-src 'self' blob:",
